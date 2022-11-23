@@ -18,7 +18,9 @@ using namespace std;
 void initializeNamesArray(string[], int);
 void initializePoundPrices(int[], int);
 void getVals(double[], int);
+void showVals(string[], int[], double[], double[], int);
 
+const int MAX_COUNT = 6; //maximum possible values for the array
 const string BAD_INFO = "Value is too small. Enter a number that is greater than 0. ";
 const string GOOD_INFO = "Thank you for entering the information correctly.\n";
 //Main function: Tells user directions,
@@ -26,7 +28,6 @@ const string GOOD_INFO = "Thank you for entering the information correctly.\n";
 //Then allows user to repeat program
 int main() 
 {
-
 	//Introduction and Directions for user:
 	cout << "*******************************************************************\n";
 	cout << "*Use this database to store a purchase order for Plastic products *\n";
@@ -34,7 +35,7 @@ int main()
 	cout << "*******************************************************************\n";
 
 	//char repeatProgram;//user choice to run the program again
-	const int MAX_COUNT = 6; //maximum possible values for the array
+
 	string nameOfPlastic[MAX_COUNT];
 	initializeNamesArray(nameOfPlastic, MAX_COUNT);
 
@@ -48,12 +49,7 @@ int main()
 
 
 	//	processVals(arrayOfEntries, numOfEntries, highestVal, lowestVal, average);
-	//	showVals(arrayOfEntries, numOfEntries, highestVal, lowestVal, average);
-
-	for (int i = 0; i < MAX_COUNT; i++)
-	{
-		cout << endl << priceRateOfPlastic[i];
-	}
+	showVals(nameOfPlastic, priceRateOfPlastic, weightOfPlastic, costOfPlastic, MAX_COUNT);
 	return 0;
 }
 
@@ -116,4 +112,16 @@ void getVals(double entryArray[], int arrayCapacity)
 		cin >> entryArray[5];
 		(entryArray[5] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
 	} while (entryArray[5] <= 0);
+}
+
+void showVals(string namesArray[], int pricesArray[], double entryArray[], double calculationResults[], int arraySize)
+{
+	cout << "------------------------------ PURCHASE ORDER -------------------------------------\n";
+	cout << "            Material               Weight(Pounds)    Cost/Pound         Cost       \n";
+
+	for (int i = 0; i < MAX_COUNT; i++)
+	{
+		cout << namesArray[i] << " " << entryArray[i]<<" "<<" " << pricesArray[i] <<" " << calculationResults[i] <<endl;
+	}
+	cout << "-----------------------------------------------------------------------------------\n";
 }
