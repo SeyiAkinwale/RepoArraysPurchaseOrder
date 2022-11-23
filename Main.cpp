@@ -16,9 +16,10 @@ using namespace std;
 //void showVals(int[], int, int&, int&, double&);
 
 void initializeNamesArray(string[], int);
-void initializePoundPrices(int[], int);
+void initializePoundPrices(double[], int);
 void getVals(double[], int);
-void showVals(string[], int[], double[], double[], int);
+void processVals(double[], double[], double[], int );
+void showVals(string[], double[], double[], double[], int);
 
 const int MAX_COUNT = 6; //maximum possible values for the array
 const string BAD_INFO = "Value is too small. Enter a number that is greater than 0. ";
@@ -36,19 +37,23 @@ int main()
 
 	//char repeatProgram;//user choice to run the program again
 
+	//initialize names of types of plastic
 	string nameOfPlastic[MAX_COUNT];
 	initializeNamesArray(nameOfPlastic, MAX_COUNT);
-
-	int priceRateOfPlastic[MAX_COUNT];  //cents to dollars
+	
+	//initialize rates of types of plastic
+	double priceRateOfPlastic[MAX_COUNT];  //cents to dollars
 	initializePoundPrices(priceRateOfPlastic, MAX_COUNT);
 
+	//receive user weights of plastics
 	double weightOfPlastic[MAX_COUNT]={1,1,1,1,1,1};
 	getVals(weightOfPlastic, MAX_COUNT);
 
+	//calculate cost of selected plastics' weights
 	double costOfPlastic[MAX_COUNT]={1,1,1,1,1,1};
-
-
-	//	processVals(arrayOfEntries, numOfEntries, highestVal, lowestVal, average);
+	processVals(priceRateOfPlastic, weightOfPlastic, costOfPlastic, MAX_COUNT);
+	
+	//show full data table
 	showVals(nameOfPlastic, priceRateOfPlastic, weightOfPlastic, costOfPlastic, MAX_COUNT);
 	return 0;
 }
@@ -63,14 +68,14 @@ void initializeNamesArray(string namesArray[], int maxCount)
 	namesArray[5] = "Grade C film";
 }
 
-void initializePoundPrices(int pricesArray[], int maxCount)
+void initializePoundPrices(double pricesArray[], int maxCount)
 {
-	pricesArray[0] = 8;
-	pricesArray[1] = 34;
-	pricesArray[2] = 4;
-	pricesArray[3] = 8;
-	pricesArray[4] = 5;
-	pricesArray[5] = 2;
+	pricesArray[0] = 8/100.0;
+	pricesArray[1] = 34/100.0;
+	pricesArray[2] = 4/100.0;
+	pricesArray[3] = 8/100.0;
+	pricesArray[4] = 5/100.0;
+	pricesArray[5] = 2/100.0;
 }
 
 void getVals(double entryArray[], int arrayCapacity) 
@@ -80,41 +85,49 @@ void getVals(double entryArray[], int arrayCapacity)
 	cout << "How many pounds of PET beverage bottles and jars?";
 	do {
 		cin >> entryArray[0];
-		(entryArray[0] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
-	} while (entryArray[0] <= 0);
+		(entryArray[0] < 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[0] < 0);
 
 	cout << endl << "How many pounds of Natural  high-density polyethylene?";
 	do {
 		cin >> entryArray[1];
-		(entryArray[1] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
-	} while (entryArray[1] <= 0);
+		(entryArray[1] < 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[1] < 0);
 
 	cout << endl << "How many pounds of Color HDPE?";
 	do {
 		cin >> entryArray[2];
-		(entryArray[2] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
-	} while (entryArray[2] <= 0);
+		(entryArray[2] < 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[2] < 0);
 
 	cout << endl << "How many pounds of Grade A film?";
 	do {
 		cin >> entryArray[3];
-		(entryArray[3] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
-	} while (entryArray[3] <= 0);
+		(entryArray[3] < 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[3] < 0);
 
 	cout << endl << "How many pounds of Grade B film?";
 	do {
 		cin >> entryArray[4];
-		(entryArray[4] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
-	} while (entryArray[4] <= 0);
+		(entryArray[4] < 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[4] < 0);
 
 	cout << endl << "How many pounds of Grade C film?";
 	do {
 		cin >> entryArray[5];
-		(entryArray[5] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
-	} while (entryArray[5] <= 0);
+		(entryArray[5] < 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[5] < 0);
 }
 
-void showVals(string namesArray[], int pricesArray[], double entryArray[], double calculationResults[], int arraySize)
+void processVals(double pricesArray[], double entryArray[], double calculationResults[], int arraySize)
+{
+	for (int i = 0; i < arraySize; i++)
+	{
+		calculationResults[i]= pricesArray[i]*entryArray[i];
+	}
+}
+
+void showVals(string namesArray[], double pricesArray[], double entryArray[], double calculationResults[], int arraySize)
 {
 	cout << "------------------------------ PURCHASE ORDER -------------------------------------\n";
 	cout << "            Material               Weight(Pounds)    Cost/Pound         Cost       \n";
