@@ -17,54 +17,38 @@ using namespace std;
 
 void initializeNamesArray(string[], int);
 void initializePoundPrices(int[], int);
+void getVals(double[], int);
+
+const string BAD_INFO = "Value is too small. Enter a number that is greater than 0. ";
+const string GOOD_INFO = "Thank you for entering the information correctly.\n";
 //Main function: Tells user directions,
 //Calls the 3 program functions
 //Then allows user to repeat program
-int main() {
+int main() 
+{
 
 	//Introduction and Directions for user:
-	cout << "***************************************************************\n";
-	//cout << "*Use this applet to compare scores to the average score     *\n";
-	//cout << "*You will start by entering the number of contestants.      *\n";
-	//cout << "*Then you will enter each contestant's score as an integer. *\n";
-	//cout << "*************************************************************\n";
+	cout << "*******************************************************************\n";
+	cout << "*Use this database to store a purchase order for Plastic products *\n";
+	cout << "*Enter weight for each item to create a purcchase order.          *\n";
+	cout << "*******************************************************************\n";
 
 	//char repeatProgram;//user choice to run the program again
 	const int MAX_COUNT = 6; //maximum possible values for the array
 	string nameOfPlastic[MAX_COUNT];
 	initializeNamesArray(nameOfPlastic, MAX_COUNT);
 
-
 	int priceRateOfPlastic[MAX_COUNT];  //cents to dollars
 	initializePoundPrices(priceRateOfPlastic, MAX_COUNT);
 
-	double weightOfPlastic[MAX_COUNT]; 
-	double costOfPlastic[MAX_COUNT];
+	double weightOfPlastic[MAX_COUNT]={1,1,1,1,1,1};
+	getVals(weightOfPlastic, MAX_COUNT);
 
-	//do
-	//{
-	//	int numOfEntries = 0;
-	//	int arrayOfEntries[maxCount];
+	double costOfPlastic[MAX_COUNT]={1,1,1,1,1,1};
 
-	//	getVals(arrayOfEntries, maxCount, numOfEntries);
-	//	cout << endl << "numOfEntries" << numOfEntries << endl;
-	//	int highestVal = 0; //highest entry from user
-	//	int lowestVal = 0; //lowest entry from user
-	//	double average = 0; //average of user entries
 
 	//	processVals(arrayOfEntries, numOfEntries, highestVal, lowestVal, average);
 	//	showVals(arrayOfEntries, numOfEntries, highestVal, lowestVal, average);
-
-	//	cout << "Would you like to do it again? Y/N: ";
-	//	cin >> repeatProgram;
-	//	cout << endl << repeatProgram << endl;
-	//} while ((repeatProgram == 'Y') || (repeatProgram == 'y'));
-
-	for (int i = 0; i < MAX_COUNT; i++)
-	{
-		cout << endl << nameOfPlastic[i];
-	}
-
 
 	for (int i = 0; i < MAX_COUNT; i++)
 	{
@@ -93,24 +77,43 @@ void initializePoundPrices(int pricesArray[], int maxCount)
 	pricesArray[5] = 2;
 }
 
-void getVals(int entryArray[], int arrayCapacity, int& currSize) {
-	cout << "After you enter each number, press enter\n";
-	cout << "When done, type in a letter\n";
+void getVals(double entryArray[], int arrayCapacity) 
+{
+	cout << "For the following no negative values allowed.\n";
 
-	int currElement = 0; //Consider value of current element to be zero to start.
-	int minEntries = 2; //User must enter at least twoValues
-	bool userFinished = false; //At start, user has not finished entering values
-	currSize = 0; //count of entries
+	cout << "How many pounds of PET beverage bottles and jars?";
+	do {
+		cin >> entryArray[0];
+		(entryArray[0] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[0] <= 0);
 
-	//loop gets 2 user values
-	for (currSize; currSize < minEntries; currSize++) {
+	cout << endl << "How many pounds of Natural  high-density polyethylene?";
+	do {
+		cin >> entryArray[1];
+		(entryArray[1] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[1] <= 0);
 
-		cout << "Enter number " << (currSize + 1) << ": ";
+	cout << endl << "How many pounds of Color HDPE?";
+	do {
+		cin >> entryArray[2];
+		(entryArray[2] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[2] <= 0);
 
-		//reads in (ith+1) number to ith index
-		cin >> currElement;
+	cout << endl << "How many pounds of Grade A film?";
+	do {
+		cin >> entryArray[3];
+		(entryArray[3] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[3] <= 0);
 
-		entryArray[currSize] = currElement;
-	}
+	cout << endl << "How many pounds of Grade B film?";
+	do {
+		cin >> entryArray[4];
+		(entryArray[4] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[4] <= 0);
 
+	cout << endl << "How many pounds of Grade C film?";
+	do {
+		cin >> entryArray[5];
+		(entryArray[5] <= 0) ? (cout << BAD_INFO) : (cout << GOOD_INFO);
+	} while (entryArray[5] <= 0);
 }
