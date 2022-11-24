@@ -24,7 +24,7 @@ void showVals(string[], double[], double[], double[], int);
 
 const int MAX_COUNT = 6; //maximum possible values for the array
 const string BAD_INFO = "Value is too small. Enter a number that is greater than 0. ";
-const string GOOD_INFO = "Thank you for entering the information correctly.\n";
+const string GOOD_INFO = "Thank you for entering the information correctly.";
 //Main function: Tells user directions,
 //Calls the 3 program functions
 //Then allows user to repeat program
@@ -130,13 +130,16 @@ void processVals(double pricesArray[], double entryArray[], double calculationRe
 
 void showVals(string namesArray[], double pricesArray[], double entryArray[], double calculationResults[], int arraySize)
 {
-	cout << "------------------------------ PURCHASE ORDER -------------------------------------\n";
-	cout << "            Material               Weight(Pounds)    Cost/Pound         Cost       \n";
+	cout << endl;
+	cout << "------------------------------ PURCHASE ORDER ----------------------------------\n";
+	cout << "            Material               Weight(Pounds)    Cost/Pound         Cost    \n";
 
 	for (int i = 0; i < MAX_COUNT; i++)
 	{
-		cout << setw(35) << left<< namesArray[i] << " " << entryArray[i] << " ";
-		cout << pricesArray[i] << " " << calculationResults[i] << endl;
+		cout << setw(40) << left << namesArray[i] << " ";
+		cout << setw(15) << setprecision(2) << fixed<< entryArray[i] << " ";
+		cout << setw(10) << left<<  setprecision(2) << pricesArray[i] << " ";
+		cout << setw(15) << setprecision(2) << calculationResults[i] << endl;
 	}
-	cout << "-----------------------------------------------------------------------------------\n";
+	cout << "--------------------------------------------------------------------------------\n";
 }
