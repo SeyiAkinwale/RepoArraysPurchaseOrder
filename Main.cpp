@@ -3,6 +3,7 @@
 //Nov 22, 2022 
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 using namespace std;
 
@@ -134,7 +135,8 @@ void showVals(string namesArray[], double pricesArray[], double entryArray[], do
 
 	for (int i = 0; i < MAX_COUNT; i++)
 	{
-		cout << namesArray[i] << " " << entryArray[i]<<" "<<" " << pricesArray[i] <<" " << calculationResults[i] <<endl;
+		cout << setw(35) << left<< namesArray[i] << " " << entryArray[i] << " ";
+		cout << pricesArray[i] << " " << calculationResults[i] << endl;
 	}
 	cout << "-----------------------------------------------------------------------------------\n";
 }
